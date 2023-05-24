@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>base</title>
+	<style>
+	body { margin: 0; background: #220000;}
+</style>
+</head>
+<body>
+	<script src="js/three.min.js"></script>
+	<script src="js/OrbitControls.js"></script>
+
+	<script>
+	const scene = new THREE.Scene();
+	const camera = new THREE.PerspectiveCamera( 95, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+	const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
+
+	camera.position.z = 20;
+	const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+
+	// create Lights
+	createLights()
+	function createLights() {
+	  globalLight = new THREE.AmbientLight(0xffffff, 1);
+	  shadowLight = new THREE.DirectionalLight(0xffffff, 1);
+	  shadowLight.position.set(10, 8, 8);
+	  shadowLight.castShadow = true;
+	  shadowLight.shadow.camera.left = -40;
+	  shadowLight.shadow.camera.right = 40;
+	  shadowLight.shadow.camera.top = 40;
+	  shadowLight.shadow.camera.bottom = -40;
+	  shadowLight.shadow.camera.near = 1;
+	  shadowLight.shadow.camera.far = 1000;
+	  shadowLight.shadow.mapSize.width = shadowLight.shadow.mapSize.height = 2048;
+	  scene.add(globalLight);
+	  scene.add(shadowLight);
+	}
+
+	// loader type
+	var xloader = new THREE.BufferGeometryLoader();
+
+	// create models
+	logogroup = new THREE.Group();
+	logogroup.name = "logogroup";
+	logogroup.rotation.y = Math.PI;
+	logogroup.scale.set(0.05,0.05,0.05)
+	scene.add( logogroup );
+
+	createmodel('models/elephant.json', 'models/textures/elephant.png');
+	createmodel('models/crown.json', 'models/textures/crown.png');
+
+
+	function createmodel(texname, texfile) {
+	// tape body
+	xloader.load(
+		texname,
+		function ( geometry ) {
+			var texture = new THREE.TextureLoader().load( texfile );
+			texture.magFilter = THREE.NearestFilter;
+			texture.minFilter = THREE.NearestFilter;
+			var material = new THREE.MeshLambertMaterial( { map: texture,
+				side:THREE.DoubleSide, } );
+			window.obj = new THREE.Mesh( geometry, material );
+			logogroup.add( obj );
+
+			//
+			outline = new THREE.MeshLambertMaterial( { color:0xffffff,
+				side:THREE.BackSide, } );
+			window.objoutline = new THREE.Mesh( geometry, outline );
+			objoutline.scale.set(1.05,1.05,1.05)
+			logogroup.add( objoutline );
+		},
+		function ( xhr ) {
+		},
+		function ( xhr ) {
+			console.log( 'An error happened' );
+		}
+		);
+	}
+
+
+	function animate() {
+		requestAnimationFrame( animate );
+		renderer.render( scene, camera );
+		logogroup.rotation.y += 0.004;
+	};
+
+	animate();
+</script>
+</body>
+</html>
