@@ -1,0 +1,134 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>unpoachable products</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            width: 80%;
+            margin: 50px auto 100px;
+            background-color: #1c2833;
+        }
+        #json-input {
+            display: block;
+            width: 100%;
+            height: 200px;
+        }
+        #translate {
+            display: block;
+            height: 28px;
+            margin: 20px 0;
+            border-radius: 3px;
+            border: 2px solid;
+            cursor: pointer;
+        }
+        #json-display {
+            /*border: 1px solid #000;*/
+            margin: 0;
+            padding: 10px 20px;
+        }
+        textarea {border:none; padding: 2em; background-color: rgba(255,255,255,0.5);}
+    </style>
+</head>
+<body>
+
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/jquery.json-editor.min.js"></script>
+
+
+
+
+<textarea id="json-input" autocomplete="off">
+{ "products": [
+  {
+    "id": 1,
+    "name":"cap",
+    "description": "Snap backs embroidered logo front",
+    "category": "headwear",
+    "price": 99.00,
+    "stock": 5,
+    "img":"url"
+  },
+  {
+    "id": 2,
+    "name":"cap",
+    "description": "Trucker style embroidered logo front",
+    "category": "headwear",
+    "price": 42.00,
+    "stock": 4,
+    "img":"url"
+  },
+  {
+    "id": 3,
+    "name":"tee-shirt",
+    "description": "Big printed logo on front, UNPOACHABLE on back bottom right",
+    "category": "tee",
+    "price": 34.00,
+    "stock": 12,
+    "img":"url"
+  },
+  {
+    "id": 4,
+    "name":"tee-shirt",
+    "description": "Embroidered logo on front left breast",
+    "category": "tee",
+    "price": 19.00,
+    "stock": 6,
+    "img":"url"
+  },
+  {
+    "id": 5,
+    "name":"sweater",
+    "description": "Embroidered logo front left breast, Unpoachable on front bottom right",
+    "category": "top",
+    "price": 19.00,
+    "stock": 0,
+    "img":"url"
+  },
+  {
+    "id": 6,
+    "name":"hoodie",
+    "description": "Embroidered logo left breast",
+    "category": "top",
+    "price": 167.00,
+    "stock": 6,
+    "img":"url"
+  },
+  {
+    "id": 7,
+    "name":"jogging-bottoms",
+    "description": "Embroidered logo below pocket left side",
+    "category": "bottoms",
+    "price": 30.00,
+    "stock": 5,
+    "img":"url"
+  }
+]
+}
+</textarea>
+
+
+    <button id="translate">Translate</button>
+    <pre id="json-display"></pre>
+
+    <script type="text/javascript">
+        function getJson() {
+            try {
+                return JSON.parse($('#json-input').val());
+            } catch (ex) {
+                alert('Wrong JSON Format: ' + ex);
+            }
+        }
+
+        var editor = new JsonEditor('#json-display', getJson());
+        $('#translate').on('click', function () {
+            editor.load(getJson());
+        });
+    </script>
+</body>
+</html>
