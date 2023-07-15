@@ -1,10 +1,9 @@
-## CAP 1
+# CAP 1
 
 ![Snap Back Flat Visor 6 Panel Cap](images/cap1.png "Snap Back Cap")
 
-Snap Back Flat Visor 6 Panel Cap
+## Snap Back Flat Visor 6 Panel Cap
 
-KEY FEATURES
 
 - Baseball Cap
 - Mens (Unisex)
