@@ -1,10 +1,8 @@
-## Jogging bottoms 
+# Jogging bottoms 
 
 ![Fleece Jogging Trousers](images/joggers.png "Jogging Trousers")
 
-Authentic Cuffed Jog Pants Mens
-
-KEY FEATURES
+## Authentic Cuffed Jog Pants Mens
 
 - Fleece Jogging Trousers
 - Mens (Unisex)
