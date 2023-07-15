@@ -1,6 +1,8 @@
-## Hooded pullover jumper 
+# Hoodie
 
 ![Fleece Pullover Hooded Sweatshirt](images/red-hoodie.png "hoodie")
+
+## Hooded pullover jumper 
 
 - Fleece Pullover Hooded Sweatshirt
 - Mens (Unisex)
