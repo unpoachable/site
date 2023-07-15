@@ -1,10 +1,9 @@
-## Cap 2
+# Cap 2
 
 ![Snap Five Flat Visor 5 Panel Cap](images/cap3.png "Snap Back Cap")
 
-Snap Five Flat Visor 5 Panel Cap
+## Snap Five Flat Visor 5 Panel Cap
 
-KEY FEATURES
 
 - Baseball Cap
 - Mens (Unisex)
