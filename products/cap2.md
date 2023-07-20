@@ -18,4 +18,9 @@
 - One Size
 - 400gsm
 
-[add to basket](#)
+
+<button onclick="add2cart(event)" 
+data-id="2"
+data-title="cap2" 
+data-price="40" 
+data-src="cap3.png">add</button>
