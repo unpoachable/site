@@ -5,7 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>base</title>
+	<link rel="icon" href="logo.svg">
+	<link rel="mask-icon" href="logo.svg" color="#000000">
+
+	<title>unpoachable</title>
 
 	<style type="text/css">
 	@font-face {
@@ -473,6 +476,15 @@
 			background: #fff !important; 
 			color: #000 !important;
 		}
+		body {
+		    height: 100%;
+		    overflow-y: scroll;
+		    scroll-snap-type: y mandatory;
+		}
+
+		body .page {
+		    scroll-snap-align: start;
+		}
 		</style>
 	
 </head>
@@ -612,17 +624,6 @@
 	</video>
 </div>
 
-
-
-   <!-- calendar -->
-<!--     <link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.js" defer></script> -->
-
-    <!-- 3D -->
-<!--     <script src="js/three.min.js"></script>
-	<script src="js/OrbitControls.js"></script>
-    <script type="text/javascript" src="hscript.js"></script> -->
-
 <script>
 	var menuicon = document.getElementById("menuicon");
 	var nav = document.getElementById("nav");
@@ -652,11 +653,6 @@
 	});
 
 
-	// // calendar
-	// document.addEventListener('DOMContentLoaded', () => {
-	// 	const calendar = new VanillaCalendar('#calendar');
-	// 	calendar.init();
-	// });
 </script>
 </body>
 </html>
