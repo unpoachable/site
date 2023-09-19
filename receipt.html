@@ -48,13 +48,13 @@
 		padding:0;
 		background-color: #000;
 		overflow-x: hidden;
-		overflow-y: scroll;
 	}
 	
 	li {list-style-type: none;}
 
 	.receipt {
 		text-align: left;
+		/*user-select:none;*/
 		display: block;
 		height: auto;
 		width: 430px;
@@ -202,6 +202,7 @@
 		margin-left: 12px;
 		font-family: 'din-regular';
 		letter-spacing: 1px;
+		/*font-size: 32px;*/
 		line-height: 34px;
 		color: #fff;
 		font-weight: lighter;
@@ -213,10 +214,17 @@
 		padding-left: 6px;
 		font-size: 16px;
 	}
+	
+	#blog {
+		/*background: #751414;*/
+	}
+
 	#contact h2 {
 		display: inline;
 		max-width: 200px;
 	}
+
+
 	.page article {
 		margin: 0;
 		position: absolute;
@@ -224,11 +232,13 @@
 		-ms-transform: translateY(-50%);
 		transform: translateY(-50%);
 	}
+
 	.page a {
 		text-decoration: none;
 		color: #fff000;
 		cursor: pointer;
 	}
+
 	.page a:hover {
 		color: #ffee9c;
 		cursor: pointer;
@@ -246,6 +256,7 @@
 		height: 50px;
 	}
 	#nav ul {
+		/*background: rgba(255,255,255,0.5);*/
 		list-style-type: none;	 
 		padding: 40px;
 		margin: 0;
@@ -261,6 +272,7 @@
 	}
 	#nav a:hover {
 		color:#fff000;
+		/*text-decoration: underline;*/
 	}
 	#nxt {
 		width: 100%;
@@ -282,6 +294,7 @@
 		color: #333;
 		margin-top: 22px;
 	}
+
 	.caret.caret-reversed {
 		border-bottom: 36px solid #fff;
 		border-left: 22px solid rgba(0, 0, 0, 0);
@@ -294,6 +307,7 @@
 		transform: rotate(180deg);
 		filter: drop-shadow(0px 0px 9px rgba(0,0,0,.9));
 	}
+
 	button {
 		cursor: pointer;
 		background: transparent;
@@ -307,13 +321,31 @@
 		transform: scale(1.2);
 	}
 	
+	#calendar {
+		background: radial-gradient(ellipse at center, #333 0%,#222 150%); 
+		margin:0 auto;
+	}
+	#calendar button:hover {
+		background: #000 !important;
+	}
+	#calendar, #calendar button {
+		color: #fff;
+	}
+	.vanilla-calendar-arrow_prev:after {
+		content: '<';
+	}
+	.vanilla-calendar-arrow_next:after {
+		content: '>';
+	}
+
+	
 	#menuicon {
-		transform: translateX(-120px);
+		/*transform: translateX(-120px);*/
 		width: 50px;
 		height: 50px;
 		position: fixed;
 		top: 22px;
-		left: 22px;
+		right: 22px;
 		cursor: pointer;
 	}
 
@@ -368,37 +400,32 @@
 		transform: rotate(-135deg);
 	}
 	#nav {
-		width: auto;
-		background: transparent;
+		width: 100%;
+		position: absolute;
+		right: 0;
+		top: 0;
 	}
 	#nav ul {
-		position: relative;
-		top: 0;
+		position: fixed;
+		right: 0;
+		top: 70px;
+		z-index: 99;
+		text-align: right;
+		font-size: 30px;
 		transition: all 0.2s ease-in-out;
-	}
-
-	#nav.shownav {
-		/*background: red;*/
+		transform: translateX(100%);
+		line-height: 40px;
+		padding: 0;
+		margin: 0;
 	}
 
 	#nav.shownav ul {
 		transform: translateX(0);
 	}
 
-	@media (max-width: 610px) {
-		#nav {
-
-		}
-		#nav ul {
-			width: 100vw;
-			height: 100vh;
-			transform: translateX(-100%);
-			top: 70px;
-		}
-
-		#menuicon {
-			transform: translateX(0);
-		}
+	#nav ul a {
+		background: rgba(0,0,0,0.9);
+		padding: 2px 22px 2px 8px;
 	}
 
 	video {
@@ -412,13 +439,8 @@
 		image-rendering: pixelated; 
 		image-rendering: crisp-edges;
 		z-index: -20 !important;
-		image-rendering: optimizeSpeed;
-		image-rendering: -moz-crisp-edges;
-		image-rendering: -o-crisp-edges;
-		image-rendering: -webkit-optimize-contrast;
+		image-rendering: crisp-edges;
 		image-rendering: pixelated;
-		image-rendering: optimize-contrast;
-		-ms-interpolation-mode: nearest-neighbor;
 	}
 
 		.social svg, .svglogo {display: inline-block; width: 60px; height: 60px;}
@@ -435,10 +457,21 @@
 			display: block; 
 			width: 200px; 
 			height: 200px;
+			/*background-color: rgba(0,0,0,0.4);*/
+			/*border-radius: 50%;*/
 		}
 		button.buyit:hover {
 			background: #fff !important; 
 			color: #000 !important;
+		}
+		body {
+		    height: 100%;
+		    overflow-y: scroll;
+		    scroll-snap-type: y mandatory;
+		}
+
+		.page {
+		    scroll-snap-align: start;
 		}
 		</style>
 	
@@ -525,7 +558,8 @@
 			<li>11th October 2023 &bull; 100 Wardour St. &bull; London <button class="buyit">tickets</button></li>
 
 		</ul>
-
+	
+		<!-- <div id="calendar"></div> -->
 	</article>
 </div>
 
@@ -580,6 +614,15 @@
 
 
 
+   <!-- calendar -->
+<!--     <link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.js" defer></script> -->
+
+    <!-- 3D -->
+<!--     <script src="js/three.min.js"></script>
+	<script src="js/OrbitControls.js"></script>
+    <script type="text/javascript" src="hscript.js"></script> -->
+
 <script>
 	var menuicon = document.getElementById("menuicon");
 	var nav = document.getElementById("nav");
@@ -597,6 +640,9 @@
 
 	// nav link click event
 	nav.addEventListener("click",function(e) {
+	    // e.target
+	    // console.log(e.target.nodeName)
+	    
 	    if(e.target && e.target.nodeName == "A") {
 	        console.log(e.target.id + " was clicked");
 	        nav.classList = '';
@@ -606,6 +652,11 @@
 	});
 
 
+	// // calendar
+	// document.addEventListener('DOMContentLoaded', () => {
+	// 	const calendar = new VanillaCalendar('#calendar');
+	// 	calendar.init();
+	// });
 </script>
 </body>
 </html>
