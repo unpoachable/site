@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="icon" href="logo.svg">
+	<link rel="mask-icon" href="logo.svg" color="#000000">
+
+	<title>unpoachable</title>
+
+	<style>
+	@font-face {
+		font-family: 'hydrogen';
+		src: url('font/hydrogen-webfont.woff') format('woff'),
+		url('font/hydrogen-webfont.woff2') format('woff2'),
+		url("font/hydrogen.otf") format("opentype");
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'archicoco';
+		src: url('font/archicoco-webfont.woff') format('woff'),
+		url('font/archicoco-webfont.woff2') format('woff2');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'din-regular'; 
+		src: url("font/din-regular.ttf") format("truetype");
+	}
+
+	@font-face {
+		font-family: 'din';
+		src: url('font/din-condensed-bold-webfont.woff') format('woff'),
+		url('font/din-condensed-bold.ttf') format('truetype');
+	} 
+	html, body {
+		font-family: 'din';
+		color: #fff;
+		scroll-behavior: smooth;
+	}
+	body {
+		width: 100%; 
+		height: 100%;
+		margin: 0;
+		padding:0;
+		background-color: #000;
+		overflow-x: hidden;
+		user-select:none;
+	}
+
+	li {list-style-type: none;}
+
+	.receipt {
+		text-align: left;
+		display: block;
+		height: auto;
+		width: 410px;
+		margin: 0 auto 12px auto;
+		background: transparent url(css/crumpled.png) 0 0 no-repeat;
+		background-size: cover;
+		box-shadow: 0 0 19px rgba(0,0,0,0.7);
+		position: relative;
+		top: 4em;
+		font-family: 'hydrogen';
+		min-width: 400px;
+		transition: .25s ease-in-out;	
+	}
+	.receipt:before, 
+	.receipt:after  {
+		content: '';
+		position:absolute;
+		width: 100%;
+		height: 2px;
+		top: 0;
+		left: 0;
+		border-top: #222 1px dotted;
+	}
+	.receipt:after {
+		top: auto;
+		bottom: 0;
+		border-top:none;	
+		border-bottom: #222 1px dotted;	
+	}
+	#txtbox {
+		padding: 50px;
+	}
+	#txtbox p {
+		font-size: 22px !important;
+		max-width: 200px;
+	}
+	#txtbox h2 {
+		font-size: 25px !important;
+	}
+
+	#txtbox h2 span {
+		font-family: sans-serif;
+	}
+	#logo {
+		display: inline-block;
+		font-family: 'archicoco';
+		font-size: 36px; 
+		text-transform: uppercase;
+		color: #000;
+		margin: 80px 50px 0 50px; 
+		padding: 0;
+	}
+	#barcode {
+		display: block;
+		width: 190px;
+		height: 84px;
+		background: transparent url(css/alive.png) 0 0 no-repeat;
+		margin-top: 22px;
+	}
+	#logoimg {
+		display: inline-block;
+		width: 60px;
+		height: 60px;
+		background: transparent url(logo.svg) 0 0 no-repeat;
+		background-size: contain;
+		position: absolute;
+		bottom: 70px;
+		right: 40px;
+	}
+	.page {
+		display: block;
+		width: 100vw;
+		height: 100vh;
+		height: 100dvh;
+		position: relative;
+		background-attachment: fixed;
+		background-size: cover !important;
+		z-index: 1;
+		min-height: 400px;
+	}
+
+	.page h2, .page h3 {
+		font-size: 22px;
+		max-width: 300px;
+		margin: 0 auto;
+		text-transform: uppercase;
+		padding: 12px 0;
+	}
+	#txtbox h2 {
+		margin: 0;
+		padding: 0;
+	}
+	.page p {
+		font-size: 15px !important;
+		margin: 12px 0;
+		padding: 0;
+	}
+	article {	
+		text-align: center;
+		position: absolute; 
+		width: 100%;
+		padding: 32px 0;
+		z-index: 99;
+	}
+	article h2 {
+		font-family: 'archicoco';
+		max-width: 300px;	
+	}
+
+	#home {
+		text-align: center;
+		background: #eee url(css/wood.jpg) 0 0 no-repeat;
+		background-attachment: fixed;
+		color: #000;
+		font-family: 'receipt';
+		min-height: 600px;
+	}
+	#about {
+		background: transparent url(css/concrete2.png) 0 0;
+		background-color: #222;
+		margin: 0; 
+		box-shadow: 0 0 19px rgba(0,0,0,0.7);
+		font-family: 'din';
+		font-size: 60px;
+		color: #fff;
+		background: rgba(0,0,0,0.4);
+	}
+	#about svg {
+		background: red;
+	}
+	#about svg {margin: 0 auto;}
+	#shop {
+		font-family: 'din-regular';
+		font-size: 28px;
+	}
+
+	#shop {background: #000;}
+
+	#shop article {
+		display: block;
+		width: 300px;
+		height: 80px;
+		color: #fff;
+		position: relative;
+		margin: 0 auto;
+	}
+
+	#shopbtn, article h2, #shop button {
+		text-shadow: 0 0 5px rgba(0,0,0,0.4)
+	}
+	#shop button {
+		display: inline-block;
+	}
+	#shop h2 {
+		font-family: 'archicoco';
+		font-size: 20px;
+		display: block;
+		color: #fff;
+		display: block;
+	}
+	#shopbtn svg {
+		margin-top: 30px;
+		display: block;
+		filter: drop-shadow(0px 0px 5px rgb(0 0 0 / 0.6));
+	}
+	#colourbtns {
+		display: block;
+		position: absolute;
+		bottom: 20px;
+		left: 0;
+		width: 100%;
+		text-align: center;
+	}
+	#colourbtns button {
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		background: #333;
+		border-radius: 50%;
+		margin-left: 8px;
+		border:#fff 2px solid;
+		text-indent: -1000em;
+	}
+
+	
+	
+#colourbtns button.red {background: #ff0000;}
+#colourbtns button.black {background: #111;}
+#colourbtns button.grey {background: #ccc;}
+#colourbtns button.white {background: #eee;}
+#colourbtns button.green {background: #00ee00;}
+
+
+
+	.nextbtn, .prevbtn {
+		display: block;
+		color: #fff;
+		font-family: 'din-regular';
+		transform: rotate(90deg);
+		width: 80px;
+		height: 80px;
+		line-height: 80px;
+		font-size: 20px;
+		color: #fff;
+		position: absolute;
+		top: 40vh;
+		right: 0;
+		background: rgba(0,0,0,0.3);
+		text-shadow: 0 0 5px rgba(0,0,0,0.4);
+	}
+
+	.nextbtn {
+		right: 0;
+	}
+	.prevbtn {
+		left: 0;
+	}
+	.nextbtn:hover, .prevbtn:hover {
+		background: #000;
+	}
+	.nextbtn:active, .prevbtn:active {
+		background: #fff;
+		color: #000;
+	}
+	#events li {
+		font-size: 32px;
+		line-height: 52px;
+		width: 92%;
+		background: rgba(255,255,255,0.1);
+		padding-bottom: 12px;
+		margin-bottom: 8px;
+		border-radius: 4px;
+	}
+	#events button {
+		font-size: 20px;
+		border-radius: 32px;
+		background: rgba(255,255,255,0.3);
+		padding: 0 10px 0 12px;
+		margin-left: 12px;
+		font-family: 'din-regular';
+		letter-spacing: 1px;
+		/*font-size: 32px;*/
+		line-height: 34px;
+		color: #fff;
+		font-weight: lighter;
+		text-transform: uppercase;
+	}
+	#contact {
+		overflow: hidden;
+	}
+	#contact h2 {
+		display: inline;
+		max-width: 200px;
+	}
+
+
+	.page article {
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+
+	.page a {
+		text-decoration: none;
+		color: #fff000;
+		cursor: pointer;
+	}
+
+	.page a:hover {
+		color: #ffee9c;
+		cursor: pointer;
+		text-decoration: underline;
+		border:none !important; 
+	}
+
+	#nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		display: block;
+		width: 50px;
+		height: 50px;
+	}
+	#nav ul {
+		list-style-type: none;	 
+		padding: 40px;
+		margin: 0;
+		padding: 22px;
+	}
+	#nav a {
+		text-transform: uppercase;
+		font-family: 'din';
+		font-size: 28px;
+		color:#fff;
+		text-decoration: none;
+		text-shadow: 0 0 3px rgba(0,0,0,0.3);
+	}
+	#nav a:hover {
+		color:#fff000;
+	}
+	#nxt {
+		width: 100%;
+		text-align: center;
+		
+		color: #000;
+		font-family: 'din';
+		font-size: 28px;
+		position: absolute;
+		text-align: center;
+	}
+	#nxt a {
+		height: auto;
+		display: inline-block;
+		transform-origin: center top;
+		cursor: pointer;
+		text-decoration: none;
+		text-transform: uppercase;
+		color: #333;
+		margin-top: 22px;
+	}
+
+	.caret.caret-reversed {
+		border-bottom: 36px solid #fff;
+		border-left: 22px solid rgba(0, 0, 0, 0);
+		border-right: 22px solid rgba(0, 0, 0, 0);
+		content: "";
+		display: inline-block;
+		height: 0;
+		vertical-align: top;
+		width: 0;
+		transform: rotate(180deg);
+		filter: drop-shadow(0px 0px 9px rgba(0,0,0,.9));
+	}
+
+	.caret.caret-right {
+		border-bottom: 36px solid #fff;
+		border-left: 22px solid rgba(0, 0, 0, 0);
+		border-right: 22px solid rgba(0, 0, 0, 0);
+		content: "";
+		display: inline-block;
+		height: 0;
+		vertical-align: top;
+		width: 0;
+		transform: rotate(90deg) scale(0.4);
+		filter: drop-shadow(0px 0px 3px rgba(0,0,0,.3));
+	}
+
+	button {
+		cursor: pointer;
+		background: transparent;
+		border: none;
+		outline: none;
+	}
+	button:hover {
+		cursor: pointer !important;
+	}
+	#nxt a:hover {
+		transform: scale(1.2);
+	}
+
+
+	#menuicon {
+		width: 40px;
+		height: 40px;
+		position: fixed;
+		top: 22px;
+		right: 22px;
+		cursor: pointer;
+	}
+
+	#menuicon span {
+		display: block;
+		position: absolute;
+		height: 6px;
+		width: 100%;
+		background: #fff;
+		border-radius: 8px;
+		opacity: 1;
+		left: 0;
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+		-webkit-transition: .25s ease-in-out;
+		-moz-transition: .25s ease-in-out;
+		-o-transition: .25s ease-in-out;
+		transition: .25s ease-in-out;
+		box-shadow: 0 0 8px rgba(0,0,0,0.5);
+	}
+
+	#menuicon span:nth-child(1) {
+		top: 4px;
+	}
+
+	#menuicon span:nth-child(2) {
+		top: 16px;
+	}
+
+	#menuicon span:nth-child(3) {
+		top: 28px;
+	}
+
+	#menuicon.open span:nth-child(1) {
+		top: 18px;
+		-webkit-transform: rotate(135deg);
+		-moz-transform: rotate(135deg);
+		-o-transform: rotate(135deg);
+		transform: rotate(135deg);
+	}
+
+	#menuicon.open span:nth-child(2) {
+		opacity: 0;
+	}
+
+	#menuicon.open span:nth-child(3) {
+		top: 18px;
+		-webkit-transform: rotate(-135deg);
+		-moz-transform: rotate(-135deg);
+		-o-transform: rotate(-135deg);
+		transform: rotate(-135deg);
+	}
+	#menuicon.open span {
+		background: #000;
+	}
+	#nav {
+		width: 100%;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	#nav ul {
+		position: fixed;
+		right: 0;
+		top: 70px;
+		z-index: 99;
+		text-align: right;
+		font-size: 30px;
+		transition: all 0.2s ease-in-out;
+		transform: translateX(100%);
+		line-height: 40px;
+		padding: 0;
+		margin: 0;
+	}
+
+	#nav.shownav ul {
+		transform: translateX(0);
+	}
+
+	#nav ul a {
+		background: rgba(0,0,0,0.9);
+		padding: 2px 22px 2px 8px;
+		box-shadow: 0 0 8px rgba(0,0,0,0.5);
+	}
+
+	video {
+		position: absolute;
+		left: 0;
+		top: 0;
+		min-width: 100%; 
+		min-height: 100%;
+		transition: all 0.1s ease-in-out;
+		z-index: -20 !important;
+		image-rendering: crisp-edges;
+		image-rendering: pixelated;
+	}
+
+	.social svg, .svglogo {display: inline-block; width: 60px; height: 60px;}
+	.social:hover {
+		border-bottom: #fff 8px solid;
+	}
+	.social:hover svg path {
+		fill:#ffee9c !important; 
+		cursor: pointer !important;
+	}
+	.social:hover {cursor: pointer;}
+
+	.ele {
+		display: block; 
+		width: 200px; 
+		height: 200px;
+	}
+
+	button.buyit:hover {
+		background: #ff0000 !important; 
+		color: #fff !important;
+	}
+
+	/* media Q */
+	@media (max-width: 500px) {
+		.receipt {
+			transform: scale(0.6);
+			width: 100%;
+		}
+		.page article {
+			width: 90%;
+			margin: 0 auto;
+		}
+		.email b { display: block;};
+	}
+
+	.email b, .email span { 
+		display: inline-block;
+		letter-spacing: 1px;
+		margin-left: 4px;
+		font-size: 32px;
+		/*font-family: 'din'*/
+	}
+	.hud {
+		position: absolute;
+		top: 12px;
+		width: 100%;
+		text-align: center;
+		display: block;
+		margin: 0 auto;
+	}
+
+		</style>
+	
+</head>
+<body>
+
+<div id="nav">
+	<button id="menuicon" onclick="shownavigation(event)">
+		<span></span><span></span><span></span>
+	</button>
+
+	<ul>
+		<li><a href="#home" >Home</a></li>
+		<li><a href="#about" >About</a></li>
+		<li><a href="#shop" >Shop</a></li>
+		<li><a href="#events" >Events</a></li>
+		<li><a href="#blog" >Blog</a></li>
+		<li><a href="#contact" >Contact</a></li>
+	</ul>
+</div>
+
+
+<div id="home" class="page">
+<div class="receipt">
+	<h2 id="logo">unpoachable</h2>
+	<div id="txtbox">		
+		<h2>UN <span>&bull;</span> POACH <span>&bull;</span> ABLE</h2>
+		<p>Not able to be poached or hunted</p>
+		<span id="barcode"></span>
+		<span id="logoimg"></span>
+	</div><!-- txtbox -->
+<div id="nxt"><a href="#about"><span class="caret caret-reversed"></span></a></div>
+</div><!-- receipt -->
+
+</div><!-- home -->
+
+
+<div id="about" class="page">
+<article>
+	<h2 onclick="spin()">MERCH &amp; DJ services</h2>
+			
+			<!-- <svg class="ele" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="400px" height="400px" viewBox="0 0 400 400">
+				<defs>
+					<g id="Layer0_0_FILL">
+						<path fill="#fff" stroke="none" d="
+						M 221 119.65
+						Q 221 119.9 220.95 120.15 220.45 124.25 218.95 127.35 218.7 127.35 218.5 127.25 215.7 125.7 212.8 124.25 212.55 124.25 212.3 124.3 199.95 125.9 187.2 124.25 187.2 124.5 187.1 124.55 183.6 126.05 180.05 127.35 180.55 123.45 179.5 121.45 178.9 120.25 178.1 119.6 167 110.45 148.3 108.9 148.3 108.65 148.25 108.65 143.95 108.4 139.6 108.4 139.6 108.65 139.6 108.9 139.35 108.9 139.15 109 127.3 115.55 115 121.7 112.8 124.6 110.85 127.8 110.2 128.9 109.3 129.9 100.1 140.6 93 153.45 94.1 169.5 100.9 179.55 103.4 183.25 106 186.55 126.05 212.3 157.8 226.6 159.4 227.3 162.1 227.15 162.1 227.4 162.1 227.65 161.35 227.65 161.35 227.75 160.7 235 161.1 242 157.9 248.55 153.2 253.55 139.45 268 120.65 277.35 120.65 277.6 120.65 277.85 120.4 277.85 120.15 277.85 120.15 279.9 120.4 281.9 120.4 281.95 120.65 281.95 121.05 282.8 122.7 282.5 122.95 282.45 123.2 282.45 125.4 283.35 128.8 282.7 128.85 282.7 128.85 282.45 151.65 277.15 164.3 261.6 164.4 261.45 164.7 261.45 171.15 282.9 175.35 306.55 177.6 319.1 175.8 329.95 174.45 338.05 173.3 346.5 172.85 349.8 172.85 353.1 177.85 362.45 192.3 362.3 192.6 362.3 192.85 362.3 194.35 361.05 196.3 360.05 196.4 360 196.4 359.75 199 360.8 202.55 360.8 202.8 360.8 203.05 360.8 204.9 359.25 206.75 357.85 206.9 357.7 207.15 357.7 207.4 357.7 207.55 357.85 207.7 357.95 207.7 358.2 207.4 358.2 207.35 358.35 206.2 360.6 204.1 361.8 205.95 364.05 209.75 364.35 210 364.35 210.25 364.35 216 362.45 225.6 363.05 228.55 363.2 230.2 361.8 233.7 363.1 235.2 360.7 235.35 360.55 235.35 360.25 236.2 358.6 235.85 355.65 235.85 355.4 235.85 355.15 231.4 348.35 227.45 341.35 227 340.45 226.1 340.3 226.1 340.05 226.15 339.8 226.85 337 224.55 337.25 226.1 336.2 225.95 333.1 225.6 325.95 226.4 318.9 227.05 312.95 224.55 314.2 224.55 313.95 224.55 313.7 224.55 313.45 224.55 313.15 232.5 305.55 228.5 291.85 228.4 291.65 227.65 291.65 227.15 291.65 226.6 291.65 226.6 291.4 226.6 291.15 231.1 290.75 231.15 285 231.2 282.4 231.75 279.4 233.45 270.6 235.85 262.5 248.55 276.9 270.65 281.9 270.9 281.95 271.15 281.95 272.6 282.85 275.2 282.2 275.25 282.2 275.25 281.95 277.3 281.95 279.35 281.7
+						L 279.35 281.45
+						Q 279.6 281.45 279.65 281.4 280.25 278.75 279.35 277.35 278.9 276.25 277.8 275.75 253.3 265.75 239.95 244.55 241.35 239.85 241.95 234.35 242 234.05 242 233.8 242.25 233.8 242.25 233.75 242.9 230.6 242 228.7 242 228.45 242.05 228.2 242.3 226.85 240.95 227.15 240.95 226.9 240.95 226.65 260.9 218.2 277.1 206 282.4 202 285.8 196.3 286 195.95 286 195.4 283.4 192.55 290.1 192.85 290.35 192.85 290.6 192.85 300.4 178.05 306.4 159.55 306.5 159.35 306.5 159.05 306.75 159.05 306.75 159 307.4 155.35 306.5 152.95 303.8 144.65 297.75 139.7 291.65 134.75 287.9 127.15 287.75 126.9 287.35 126.5 275.8 115.5 259.9 108.9 259.9 108.65 259.85 108.65 256.3 108.4 252.75 108.4 252.75 108.65 252.75 108.9 252.5 108.9 252.2 108.9 232.7 110.35 221 119.65 Z"/>
+
+						<path fill="#fff" stroke="none" d="
+						M 200.6 43.2
+						Q 199.05 37.45 193.85 35.7 193.7 36.55 193.7 36.8 191 60.2 181.55 76.15 172.75 73.15 164.45 69.3 158.6 66.6 153.9 69.5 154.6 72.9 156.4 75.2 161.95 82.15 164.75 91.6 167.1 99.6 170.8 105.85 177.55 104.1 183.2 101.4 188.95 98.6 196.45 98.2 212.65 97.3 227.15 98.65 219 94.5 208.7 92.7 189 89.4 174.9 96.6 174.65 96.6 174.6 96.5 170.7 87.5 167.25 78.2 167.5 78.2 167.7 78.3 174.85 81.3 183.1 83.3 183.35 83.3 183.45 83.15 193.3 71.45 196.95 53.6 196.95 53.85 197 54.1 202.05 68.7 211.25 79.2 211.5 79.2 211.75 79.15 224.95 73.95 237.35 67.95 237.35 68.2 237.25 68.4 231.5 81.3 229.2 95.05 235.4 85.7 240.8 75.3 244.4 68.4 243.5 61.8 243.6 61 242.5 61.25 227.4 64.85 212.8 71.5 204.95 58.9 200.6 43.2 Z"/>
+					</g>
+				</defs>
+
+				<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+					<use xlink:href="#Layer0_0_FILL"/>
+				</g>
+			</svg> -->
+		
+
+</article>
+	
+</div>
+
+<div id="shop" class="page">
+	<div class="hud">
+		<button class="prevbtn" onclick="next(-1)">&lt;</button>
+		<!-- <h2>SHOP</h2>		 -->
+		<button class="nextbtn" onclick="next(1)">&gt;</button>
+		<button id="shopbtn" >
+			<svg class="svglogo" style="vertical-align: middle;fill: #fff;overflow: hidden;" viewBox="0 0 1109 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+			<path d="M1012.920568 469.559268c-15.332419 43.758169-43.523597 85.298574-85.298574 85.298574L294.493327 554.857842 309.207331 661.48106c3.326644 23.542406 19.085556 42.649287 42.649287 42.649287l618.414663 0 0 42.649287L330.531975 746.779634c-35.334934 0-57.960381-27.956608-63.973931-63.973931L181.25947 43.066397 10.662322 43.066397 10.662322 0.41711c0 0 131.317155-0.938284 170.597148 0 27.977932 0.661064 42.649287 42.649287 42.649287 42.649287l11.771203 85.298574L1012.920568 128.364971c59.090587 0 86.620702 24.864534 85.298574 85.298574L1012.920568 469.559268zM1012.920568 171.014258 351.856618 171.014258l-85.298574 0-24.992482 0 47.042164 341.194297L309.207331 512.208555l0 0 597.090019 0c36.550439 0 51.904182-10.79027 63.973931-42.649287l85.298574-234.571079C1063.438649 190.270411 1043.308185 171.014258 1012.920568 171.014258zM426.492871 789.428921c64.784267 0 117.285539 52.501272 117.285539 117.285539S491.277138 1024 426.492871 1024 309.207331 971.498728 309.207331 906.714461 361.708604 789.428921 426.492871 789.428921zM426.492871 981.350713c41.220536 0 74.636252-33.394392 74.636252-74.636252S467.713407 832.078208 426.492871 832.078208 351.856618 865.4726 351.856618 906.714461 385.272335 981.350713 426.492871 981.350713zM874.310385 789.428921c64.784267 0 117.285539 52.501272 117.285539 117.285539S939.094652 1024 874.310385 1024 757.024846 971.498728 757.024846 906.714461 809.526118 789.428921 874.310385 789.428921zM874.310385 981.350713c41.241861 0 74.636252-33.394392 74.636252-74.636252S915.552246 832.078208 874.310385 832.078208 799.674133 865.4726 799.674133 906.714461 833.068525 981.350713 874.310385 981.350713z"></path></svg>
+	</button>
+</div>
+<div id="colourbtns"></div>
+</div>
+
+<div id="events" class="page">
+	<article>
+		<h2>UNPOACHABLE COLLECTIVE</h2>
+
+		<ul>
+			<li>7th September 2023 &bull; Lafayette &bull; London <button class="buyit">tickets <span class="caret caret-right"></span></button></li>
+			<li>11th October 2023 &bull; 100 Wardour St. &bull; London <button class="buyit">tickets <span class="caret caret-right"></span></button></li>
+
+		</ul>
+	
+	</article>
+</div>
+
+<div id="blog" class="page">
+<article>
+		<h2><a href="https://bantrophyhunting.org">bantrophyhunting.org</a></h2>
+
+		<h2><a href="">blog article two</a></h2>
+
+</article>
+</div>
+
+<div id="contact" class="page">
+	<article>
+		<h2>
+			<p class="email"><b>We</b><b>Are</b><b>Unpoachable</b><span>@gmail.com</span></p>
+		</h2>
+		<br>
+		<br>
+			<a href="" class="social">
+				<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="512"
+				height="512"
+				viewBox="0 0 512 512"
+				>
+				<path
+				d="m 265.93,64 c -41.667,1.375 -84.183,-3.251 -125.086,6.62 -40.578,9.984 -70.111,47.801 -73.974,88.801 -4.638,50.316 -2.221,100.998 -2.387,151.461 -0.13,35.781 3.377,75.54 29.696,102.571 26.992,30.526 70.203,34.851 108.429,34.06 51.153,0.126 102.552,2.098 153.519,-2.913 39.308,-5.052 74.901,-33.599 84.896,-72.546 9.743,-37.854 5.561,-77.469 6.977,-116.135 -1.503,-39.853 3.194,-80.889 -8.106,-119.676 -11.48,-38.58 -48.197,-65.647 -87.639,-69.523 -28.631,-3.127 -57.567,-2.34 -86.324,-2.72 z m -30.994,34.377 c 40.692,1.041 81.831,-2.334 122.195,4.027 27.079,4.842 48.722,27.65 52.884,54.725 5.423,39.468 2.928,79.585 3.602,119.335 -1.931,32.303 3.528,66.492 -9.587,97.085 -11.821,27.14 -42.43,38.798 -70.315,38.825 -52.965,1.631 -106.056,1.888 -159.003,-0.245 -28.757,-0.263 -59.374,-15.308 -68.969,-43.925 -10.145,-32.022 -6.293,-66.255 -7.21,-99.36 0.658,-38.302 -2.245,-77.064 4.145,-114.983 5.342,-29.297 31.986,-50.471 60.987,-53.027 23.622,-2.633 47.537,-2.147 71.272,-2.457 z m 122.951,32.38 c -19.563,-0.758 -30.439,26.323 -15.751,39.304 13.259,14.58 40.231,3.133 39.072,-16.5 0.246,-12.423 -10.968,-23.203 -23.321,-22.804 z m -100.311,26.777 c -38.532,-0.791 -76.376,22.386 -91.331,58.265 -21.747,44.612 -1.617,103.134 41.978,126.287 41.974,24.313 100.227,11.204 127.711,-28.696 29.712,-39.463 22.664,-100.415 -15.507,-131.922 -17.255,-15.073 -39.912,-23.824 -62.851,-23.934 z m -1.067,34.281 c 36.069,-0.829 67.125,33.32 63.491,69.11 -1.715,38.865 -44.436,68.767 -81.579,56.709 -36.64,-9.135 -57.429,-53.986 -40.946,-87.883 9.99,-22.905 34.017,-38.439 59.034,-37.936 z"
+				style="fill:#fff"/>
+			</svg>
+		</a>
+
+		<a href=""  class="social">
+			<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="512"
+			height="512"
+			viewBox="0 0 512 512">
+			<path
+			d="m 420.025,354.779 -99.601,-98.538 99.597,-98.538 v 197.076 z m -311.065,18.713 99.78,-98.445 4.263,4.032 c 23.561,22.206 61.001,22.206 83.556,0 l 4.294,-4.213 100.24,98.626 H 108.959 z m -17.9,-215.789 99.449,98.538 -99.628,98.538 0.179,-197.076 z M 400.909,138.897 278.386,259.911 c -12.449,12.397 -34.732,12.124 -47.547,-0.481 L 109.143,138.897 H 400.909 z M 64,112 c 0,11.284 0,276.627 0,288 11.599,0 372.401,0 384,0 0,-11.373 0,-276.72 0,-288 -11.599,0 -372.401,0 -384,0 z"
+			style="fill:#fff"/>
+		</svg>
+	</a>
+
+	</article>
+
+	<video autoplay muted loop id="bgvideo" class="on" loop="">
+  		<source src="css/noise.mp4" type="video/mp4">
+	</video>
+</div>
+
+<script src='js/Tween.js'></script>
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/clothes.js"></script>
+
+</body>
+</html>
