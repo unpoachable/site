@@ -1,0 +1,361 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<head lang="en">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name=viewport content='width=700'>
+			<meta charset="utf-8">
+
+			<title>UNPOACHABLE</title>
+
+
+			<style type="text/css">
+			@font-face {
+				font-family: 'archicoco';
+				src: url('font/archicoco-webfont.woff') format('woff'),
+				url('font/archicoco-webfont.woff2') format('woff2');
+				font-weight: normal;
+				font-style: normal;
+			}
+
+
+			@font-face {
+				font-family: din-regular; 
+				src: url("font/din-regular.ttf") format("truetype");
+			}
+
+			@font-face {
+				font-family: 'din';
+				src: url('font/din-condensed-bold-webfont.woff') format('woff'),
+				url('font/din-condensed-bold.ttf') format('truetype');
+			} 
+
+			html {
+				background-color: #d7cbb0;
+				background-attachment: fixed;
+				background-size: cover;
+				color: #fff;
+				scroll-behavior: smooth;
+			}
+
+			body {
+				width: 100%; height: 100%;
+			}
+
+			body.home {
+				width: 100%; height: 100%;
+				background:url(css/kili.png) top center no-repeat;
+				background-size: cover;
+			}
+
+			html, body {
+				overscroll-behavior-x: none;
+				margin: 0; padding: 0;
+			}
+			button {
+				outline: none; 
+				border:none; 
+				background-color: transparent; 
+				cursor: pointer;
+			}
+			#content {
+				font-family: din-regular;
+				display: block;
+				color: #000;
+				font-size: 24px;
+				line-height: 26px;
+				width: 100%; 
+				min-height: 100vh;
+			}
+			header, #content {
+				display: block;
+				width: 90%;
+				margin: 0 auto;
+				padding: 0;
+			}
+			header {
+				width: 100%;
+				height: 100px;
+				padding: 0;
+				/*background-color: rgba(0,0,0,0.2);*/
+			}
+			header h2 {
+				margin: 0 0 0 30px;
+				padding: 25px 0 0 0;
+			}
+			h2 {
+				color: #000;
+			}
+			article {
+				display: block;
+				padding: 2em 0 4em 0;
+				margin-right: 80px;
+			}
+
+			article::after {
+				content: ' ';
+				display: block;
+				width: 50px;
+				height: 50px;
+				border-radius: 2px;
+				margin-top: 2em;
+				background: transparent url('logo.svg') center center no-repeat;
+				background-size: cover;
+			}
+
+			header h2{
+				font-family: 'archicoco';
+				font-size: 40px; 
+				text-transform: uppercase;
+			}
+			article h2 {
+				font-family: 'din';
+				text-transform: uppercase;
+			}
+			article h2:after, #nav a:after {
+				content: '';
+				display: inline-block;
+				width: 8px;
+				height: 8px;
+				background: rgba(0,0,0,0.5);
+				border-radius: 50%;
+				margin-left: 6px;
+			}
+			#nav li:hover a:after {
+				background: rgba(255,255,255,1);
+			}
+			article a {
+				text-decoration: none; 
+				color: #000;
+				background-color: #fff;
+				padding: 8px;
+				border-radius: 5px;
+				box-shadow: 0 0 19px rgba(0,0,0,1);
+				line-height: 2em;
+			}
+			article a:hover {background-color: orange;}
+			button#navbtn {outline: none; border:none; 
+				background-color: transparent; cursor: pointer;	
+				display: block;
+				width: 40px; height: 40px;
+				position: absolute;
+				top: 32px; right: 32px;
+			}
+			#navbtn svg {
+				display: block;
+				width: 40px; height: 40px;
+			}
+			#nav {
+				display: block;
+				height: 100%;
+				padding: 0;
+				position: fixed;
+				text-align: right;
+				background: #8e7f5e;
+				transition: 0.2s;
+				box-shadow: 0 0 16px rgba(0,0,0,0.2);
+				top: 0; 
+				right: -100%;
+			}
+			#nav.shownav  {
+				right: 0;
+			}
+			#nav ul {
+				margin: 70px 22px 22px 22px;
+				padding: 22px;
+			}
+			#nav li {
+				margin: 0; padding: 0;
+				list-style-type: none;
+			}
+			#nav a {
+				text-decoration: none;
+				color: #000;
+				font-family: 'din';
+				font-size: 30px;
+				line-height: 50px;
+				text-transform: uppercase;
+			}
+			#nav a:hover {
+				color: #fff;
+			}
+
+			#menuicon {
+				transform: scale(0.4);
+				width: 60px;
+				height: 60px;
+				position: fixed;
+				top: 22px;
+				right: 22px;
+				/*margin: 50px auto;*/
+				cursor: pointer;
+			}
+
+			#menuicon span {
+				display: block;
+				position: absolute;
+				height: 9px;
+				width: 100%;
+				background: #000;
+				border-radius: 9px;
+				opacity: 1;
+				left: 0;
+				-webkit-transform: rotate(0deg);
+				-moz-transform: rotate(0deg);
+				-o-transform: rotate(0deg);
+				transform: rotate(0deg);
+				-webkit-transition: .25s ease-in-out;
+				-moz-transition: .25s ease-in-out;
+				-o-transition: .25s ease-in-out;
+				transition: .25s ease-in-out;
+			}
+
+			#menuicon span:nth-child(1) {
+				top: 0px;
+			}
+
+			#menuicon span:nth-child(2) {
+				top: 18px;
+			}
+
+			#menuicon span:nth-child(3) {
+				top: 36px;
+			}
+
+			#menuicon.open span:nth-child(1) {
+				top: 18px;
+				-webkit-transform: rotate(135deg);
+				-moz-transform: rotate(135deg);
+				-o-transform: rotate(135deg);
+				transform: rotate(135deg);
+			}
+
+			#menuicon.open span:nth-child(2) {
+				opacity: 0;
+				/*left: 120px;*/
+			}
+
+			#menuicon.open span:nth-child(3) {
+				top: 18px;
+				-webkit-transform: rotate(-135deg);
+				-moz-transform: rotate(-135deg);
+				-o-transform: rotate(-135deg);
+				transform: rotate(-135deg);
+			}
+
+			/*page specific css*/
+			article#home {
+				max-width: 500px;
+				text-align: justify-all;
+				font-family: 'din';
+				font-size: 30px;
+				color: #111;
+			}
+		
+			/* media Q */
+			@media (min-width: 600px) {
+				#content  {
+					margin-right: 200px;
+					margin-left: 30px;
+				}
+				#nav  {
+					right: 0;
+					background-color: rgba(0,0,0,0);
+					box-shadow: none;
+				}
+				#menuicon  {
+					visibility: hidden;
+				}
+
+			}
+			@media (max-width: 600px) {
+				#menuicon  {
+					visibility: visible;
+				}
+			}
+
+
+
+		</style>
+	</head>
+	<body>
+		<div id="nav">
+			<ul>
+				<li><a href="#home" onclick="runnav('home')">home</a></li>
+				<li><a href="#about" onclick="runnav('about')">about</a></li>
+				<li><a href="#support" onclick="runnav('support')">support</a></li>
+			</ul>
+		</div>
+
+		<header>
+			<h2>UNPOACHABLE</h2>	
+
+			<button id="menuicon" onclick="shownavigation(event)">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</header>
+
+		<div id="content"></div>
+
+
+		<script src="js/marked.min.js"></script>
+		<script type="text/javascript">
+		var menuicon = document.getElementById("menuicon");
+		var nav = document.getElementById("nav");
+
+		// show navigation
+		function shownavigation(argument) {
+			
+			nav.classList.toggle('shownav');
+			if ( nav.classList != "shownav") {
+				menuicon.classList = '';
+			} else {
+				menuicon.classList = 'open';
+			}
+
+		}
+
+		// run nav
+		async function runnav(here) {
+			let file = await fetch('pages/'+here+'.md');
+			let text = await file.text();
+			var article = document.createElement('article');
+			article.innerHTML = marked.parse(text);
+			article.id = here;
+			content.innerHTML = '';
+			content.appendChild(article)
+			shownavigation(menuicon);
+			history.replaceState(undefined, undefined, "#"+here)
+			document.body.className = here;
+		}
+
+		// create html from md file
+		async function run(here) {
+			let file = await fetch('pages/'+here+'.md');
+			let text = await file.text();
+			var article = document.createElement('article');
+			article.innerHTML = marked.parse(text);
+			article.id = here;
+			content.appendChild(article)
+			history.replaceState(undefined, undefined, "#"+here)
+			document.body.className = here;
+		}
+
+
+		// start
+		// load page from URL
+		if(window.location.hash) {
+			var hash = window.location.hash.substring(1);
+			console.log(hash+' : from url')
+			run(hash);
+			history.replaceState(undefined, undefined, "#"+hash)
+		} else {
+			run('home');
+		}
+
+</script>
+
+</body>
+</html>
