@@ -1,4 +1,0 @@
-- cap1
-- cap2
-- hoodie
-- jogging
