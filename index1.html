@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>unpoachable</title>
+	<style type="text/css">
+		#navigation {display: none;}
+	</style>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+	<header>
+		<h2><a href="#home" onclick="runnav('home')" title="home page">UNPOACHABLE</a></h2>	
+	</header>
+
+
+	<button id="menuicon" onclick="shownavigation(event)">
+		<span></span>
+		<span></span>
+		<span></span>
+	</button>
+
+	<div id="nav">
+		<ul>
+			<li><a href="#home" onclick="runnav('home')" title="home page">home</a></li>
+			<li><a href="#about" onclick="runnav('about')" title="about page">about</a></li>
+			<li><a href="#support" onclick="runnav('support')" title="support page">support</a></li>
+			<li><a href="#shop" onclick="shop()" title="shop page">shop</a></li>
+			<li><a href="#events" onclick="runnav('events')" title="events page">events</a></li>
+		</ul>
+	</div>
+
+	<a id="backbtn" href="#" onclick="runnav('')"> BACK</a>
+
+	<div id="content"></div>
+
+
+	<script src="js/marked.min.js"></script>
+	<script src="js/script.js"></script>
+	
+</body>
+</html>

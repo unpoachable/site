@@ -1,0 +1,4 @@
+- cap1
+- cap2
+- hoodie
+- joggers
